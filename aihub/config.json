@@ -1,0 +1,20 @@
+{
+  "dataset": {
+    "id": "017",
+    "name": "뉴스 기사 기계독해 데이터",
+    "raw_path": "data/017.뉴스 기사 기계독해 데이터/01.데이터",
+    "zip_prefixes": ["TS_", "VS_"]
+  },
+  "schema": {
+    "items_key": "data",
+    "sub_list_key": "paragraphs",
+    "text_key": "context",
+    "metadata": {
+      "doc_title": "doc_title",
+      "doc_source": "doc_source",
+      "doc_published": "doc_published",
+      "category": "doc_class.code"
+    }
+  },
+  "dedup_prefix_len": 200
+}

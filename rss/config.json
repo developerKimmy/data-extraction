@@ -1,0 +1,9 @@
+{
+  "target_per_category": 500,
+  "extract_workers": 5,
+  "categories": ["WORLD", "NATION", "BUSINESS", "TECHNOLOGY", "ENTERTAINMENT", "SCIENCE", "SPORTS", "HEALTH"],
+  "date_range": {
+    "days": 30,
+    "step": 5
+  }
+}
