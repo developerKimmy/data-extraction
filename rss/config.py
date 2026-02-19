@@ -7,8 +7,7 @@ from dotenv import load_dotenv
 import __init__  # noqa: F401 — sys.path 설정
 from utils import load_json, load_config
 
-_ENV_PATH = Path(__file__).resolve().parent.parent / ".env"
-load_dotenv(_ENV_PATH)
+load_dotenv()
 
 BASE_DIR = Path(__file__).parent
 CONFIG_JSON = BASE_DIR / "config.json"

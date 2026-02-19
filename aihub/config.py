@@ -7,8 +7,7 @@ from dotenv import load_dotenv
 import __init__  # noqa: F401 — sys.path 설정
 from shared import load_config
 
-_ENV_PATH = Path(__file__).resolve().parent.parent / ".env"
-load_dotenv(_ENV_PATH)
+load_dotenv()
 
 BASE_DIR = Path(__file__).parent
 PROJECT_ROOT = BASE_DIR.parent
