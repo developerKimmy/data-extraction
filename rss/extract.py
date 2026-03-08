@@ -105,10 +105,28 @@ def run(categories, workers):
     for code in codes:
         all_results[code] = extract_category(code, workers)
 
-    total = sum(len(v) for v in all_results.values())
+    # 카테고리 간 중복 제거 (URL + 본문 앞 200자)
+    merged = []
+    seen_urls = set()
+    seen_text = set()
+    dupes = 0
+    for arts in all_results.values():
+        for a in arts:
+            url = a.get("url", "")
+            text_prefix = a.get("text", "")[:200]
+            if url in seen_urls or (text_prefix and text_prefix in seen_text):
+                dupes += 1
+                continue
+            seen_urls.add(url)
+            if text_prefix:
+                seen_text.add(text_prefix)
+            merged.append(a)
+
     save_json(OUTPUT_DIR / "all_articles.json", {
         "collected_at": datetime.now().isoformat(),
-        "total_articles": total,
-        "articles": [a for arts in all_results.values() for a in arts],
+        "total_articles": len(merged),
+        "articles": merged,
     })
-    print(f"\n전체 완료: {total}건")
+    if dupes:
+        print(f"\n카테고리 간 중복 제거: {dupes}건")
+    print(f"전체 완료: {len(merged)}건")
