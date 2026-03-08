@@ -118,19 +118,30 @@ def collect_category(topic_code, config, target):
     return articles[:target]
 
 
-def run(categories, target):
+def _resolve_target(code, target, additional):
+    """기존 데이터 기준으로 실제 목표 건수 결정."""
+    if additional > 0:
+        rss_path = RSS_DIR / f"{code.lower()}.json"
+        existing, _ = load_items_with_keys(rss_path)
+        return len(existing) + additional
+    return target
+
+
+def run(categories, target, additional=0):
     """수집 실행."""
     RSS_DIR.mkdir(parents=True, exist_ok=True)
 
+    mode = f"+{additional}건 추가" if additional > 0 else f"카테고리당 {target}건"
     print(f"RSS 수집 시작 ({datetime.now().strftime('%Y-%m-%d %H:%M')})")
-    print(f"대상: {len(categories)}개 카테고리, 목표: 카테고리당 {target}건")
+    print(f"대상: {len(categories)}개 카테고리, 목표: {mode}")
 
     total = 0
     for code in categories:
         if code not in CATEGORIES:
             print(f"  ✗ 알 수 없는 카테고리: {code}")
             continue
-        articles = collect_category(code, CATEGORIES[code], target)
+        resolved = _resolve_target(code, target, additional)
+        articles = collect_category(code, CATEGORIES[code], resolved)
         total += len(articles)
 
     print(f"\n전체 수집 완료: {total}건")

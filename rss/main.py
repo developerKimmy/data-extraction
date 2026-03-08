@@ -20,9 +20,14 @@ def build_parser():
         "--categories", nargs="+", default=ACTIVE_CATEGORIES,
         help="수집할 카테고리 코드",
     )
-    p_collect.add_argument(
+    target_group = p_collect.add_mutually_exclusive_group()
+    target_group.add_argument(
         "--target", type=int, default=TARGET_PER_CATEGORY,
-        help=f"카테고리당 목표 건수 (기본: {TARGET_PER_CATEGORY})",
+        help=f"카테고리당 총 목표 건수 (기본: {TARGET_PER_CATEGORY})",
+    )
+    target_group.add_argument(
+        "--additional", type=int, default=0,
+        help="기존 데이터에 추가할 건수",
     )
 
     p_decode = sub.add_parser("decode", help="Google News URL 디코딩")
@@ -48,7 +53,7 @@ def main():
     args = build_parser().parse_args()
 
     if args.command == "collect":
-        run_collect(args.categories, args.target)
+        run_collect(args.categories, args.target, args.additional)
     elif args.command == "decode":
         run_decode(args.categories)
     elif args.command == "extract":
