@@ -3,7 +3,7 @@ import sys
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-from config import CATEGORIES, DECODED_DIR, OUTPUT_DIR, SMTP_CFG
+from config import CATEGORIES, DECODED_DIR, OUTPUT_DIR, DATA_DIR, SMTP_CFG
 from utils import save_json, load_items_with_keys, extract_article
 from shared import notify_progress
 
@@ -122,7 +122,7 @@ def run(categories, workers):
                 seen_text.add(text_prefix)
             merged.append(a)
 
-    save_json(OUTPUT_DIR / "all_articles.json", {
+    save_json(DATA_DIR / "all_articles.json", {
         "collected_at": datetime.now().isoformat(),
         "total_articles": len(merged),
         "articles": merged,

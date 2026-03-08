@@ -11,9 +11,9 @@ load_dotenv()
 BASE_DIR = Path(__file__).parent
 CONFIG_JSON = BASE_DIR / "config.json"
 DATA_DIR = BASE_DIR.parent / "data"
-RSS_DIR = DATA_DIR / "rss"
-DECODED_DIR = DATA_DIR / "decoded"
-OUTPUT_DIR = DATA_DIR / "output"
+RSS_DIR = DATA_DIR / "rss" / "links"
+DECODED_DIR = DATA_DIR / "rss" / "urls"
+OUTPUT_DIR = DATA_DIR / "rss" / "articles"
 
 _DEFAULTS = {
     "target_per_category": 500,

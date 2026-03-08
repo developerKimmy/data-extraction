@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).parent
 PROJECT_ROOT = BASE_DIR.parent
 CONFIG_JSON = BASE_DIR / "config.json"
 DATA_DIR = BASE_DIR.parent / "data"
-OUTPUT_DIR = DATA_DIR / "output"
+OUTPUT_DIR = DATA_DIR / "aihub" / "articles"
 
 _DEFAULTS = {
     "dataset": {

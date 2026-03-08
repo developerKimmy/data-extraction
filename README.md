@@ -28,9 +28,13 @@ data_extraction/
 │       └── article_extractor.py #    본문 추출 (newspaper3k, bs4)
 ├── .env                        # SMTP 인증 (gitignore)
 └── data/                       # 수집 결과 (gitignore)
-    ├── rss/                    #   RSS 수집 원본
-    ├── decoded/                #   디코딩된 URL
-    └── output/                 #   추출된 본문
+    ├── rss/
+    │   ├── links/              #   collect: RSS 기사 링크
+    │   ├── urls/               #   decode: 실제 URL
+    │   └── articles/           #   extract: 본문
+    ├── aihub/
+    │   └── articles/           #   AIHub 추출 본문
+    └── all_articles.json       #   전체 병합 (중복 제거)
 ```
 
 ## 설치
@@ -63,7 +67,8 @@ cd rss/
 # 1단계: RSS 링크 수집
 python main.py collect                        # 전체 카테고리 (기본 500건/카테고리)
 python main.py collect --categories BUSINESS  # 특정 카테고리만
-python main.py collect --target 300           # 목표 건수 변경
+python main.py collect --target 300           # 총 목표 건수 변경
+python main.py collect --additional 200       # 기존 데이터에 200건 추가
 
 # 2단계: URL 디코딩
 python main.py decode                         # Google News URL → 실제 URL
@@ -157,4 +162,4 @@ python main.py extract
 - 네트워크 오류, ZIP 손상 등 개별 실패 시 스킵 후 계속 진행
 - 키워드/ZIP 단위로 중간 저장 — 중단 후 재실행 시 이어서 수집
 - 연속 실패 감지 시 자동 대기 (레이트 리밋 대응)
-- 중복 자동 제거 (링크/URL 기준)
+- 중복 자동 제거 (링크/URL 기준 + 본문 앞 200자 비교)
