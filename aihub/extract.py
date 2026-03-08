@@ -4,7 +4,6 @@ import zipfile
 from collections import Counter
 from datetime import datetime
 
-import __init__  # noqa: F401 — sys.path 설정
 from config import (
     DATASET_ID, DATASET_NAME,
     AIHUB_RAW_DIR, OUTPUT_DIR, ZIP_PREFIXES,

@@ -3,7 +3,6 @@ import sys
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-import __init__  # noqa: F401 — sys.path 설정
 from config import CATEGORIES, DECODED_DIR, OUTPUT_DIR, SMTP_CFG
 from utils import save_json, load_items_with_keys, extract_article
 from shared import notify_progress

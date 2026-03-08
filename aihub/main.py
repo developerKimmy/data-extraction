@@ -1,7 +1,10 @@
 """AIHub 데이터 추출 진입점."""
-import argparse
+import sys
+from pathlib import Path
 
-import __init__  # noqa: F401 — sys.path 설정
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+import argparse
 from extract import run as run_extract
 
 

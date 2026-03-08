@@ -3,7 +3,6 @@ import sys
 import time
 from datetime import datetime
 
-import __init__  # noqa: F401 — sys.path 설정
 from config import (
     CATEGORIES,
     RSS_DIR,

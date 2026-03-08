@@ -5,7 +5,6 @@ from datetime import datetime
 
 from googlenewsdecoder import gnewsdecoder
 
-import __init__  # noqa: F401 — sys.path 설정
 from config import CATEGORIES, RSS_DIR, DECODED_DIR, SMTP_CFG
 from utils import save_json, load_items_with_keys
 from shared import notify_error, notify_progress

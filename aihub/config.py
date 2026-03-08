@@ -4,7 +4,6 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-import __init__  # noqa: F401 — sys.path 설정
 from shared import load_config
 
 load_dotenv()

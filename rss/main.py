@@ -1,7 +1,10 @@
 """RSS 뉴스 파이프라인 진입점 (collect / decode / extract)."""
-import argparse
+import sys
+from pathlib import Path
 
-import __init__  # noqa: F401 — sys.path 설정
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+import argparse
 from config import ACTIVE_CATEGORIES, TARGET_PER_CATEGORY, EXTRACT_WORKERS
 from collect import run as run_collect
 from decode import run as run_decode
