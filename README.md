@@ -6,30 +6,31 @@
 
 ```
 data_extraction/
-├── rss/                    # Google News RSS 수집
-│   ├── main.py             #   진입점 (collect / decode / extract)
-│   ├── collect.py          #   RSS 링크 수집
-│   ├── decode.py           #   Google URL → 실제 URL 디코딩
-│   ├── extract.py          #   본문 추출 (병렬)
-│   ├── config.py           #   설정 (경로, 런타임)
-│   ├── config.json         #   런타임 설정
-│   └── categories.json     #   카테고리 + 키워드 (gitignore)
-├── aihub/                  # AIHub 공공데이터 추출
-│   ├── main.py             #   진입점 (extract)
-│   ├── extract.py          #   ZIP → JSON 텍스트 추출
-│   ├── config.py           #   설정
-│   └── config.json         #   데이터셋 스키마 매핑
-├── utils/                  # 유틸리티
-│   ├── common/io_utils.py  #   JSON I/O
-│   └── rss/                #   RSS 피드 파싱, 본문 추출
-├── shared/                 # 공용 유틸리티
-│   ├── io_utils.py         #   JSON I/O, config 로딩
-│   └── notify.py           #   SMTP 이메일 알림
-├── .env                    # SMTP 인증 (gitignore)
-└── data/                   # 수집 결과 (gitignore)
-    ├── rss/                #   RSS 수집 원본
-    ├── decoded/            #   디코딩된 URL
-    └── output/             #   추출된 본문
+├── rss/                        # Google News RSS 수집
+│   ├── main.py                 #   진입점 (collect / decode / extract)
+│   ├── collect.py              #   RSS 링크 수집
+│   ├── decode.py               #   Google URL → 실제 URL 디코딩
+│   ├── extract.py              #   본문 추출 (병렬)
+│   ├── config.py               #   설정 (경로, 런타임)
+│   ├── config.json             #   런타임 설정
+│   └── categories.json         #   카테고리 + 키워드 (gitignore)
+├── aihub/                      # AIHub 공공데이터 추출
+│   ├── main.py                 #   진입점 (extract)
+│   ├── extract.py              #   ZIP → JSON 텍스트 추출
+│   ├── config.py               #   설정
+│   └── config.json             #   데이터셋 스키마 매핑
+├── shared/                     # 공용 유틸리티
+│   ├── io_utils.py             #   JSON I/O, config 로딩
+│   └── notify.py               #   SMTP 이메일 알림
+├── utils/                      # 도메인별 유틸리티
+│   └── rss/                    #   RSS 피드 파싱, 본문 추출
+│       ├── rss_fetcher.py      #     피드 수집 (feedparser)
+│       └── article_extractor.py #    본문 추출 (newspaper3k, bs4)
+├── .env                        # SMTP 인증 (gitignore)
+└── data/                       # 수집 결과 (gitignore)
+    ├── rss/                    #   RSS 수집 원본
+    ├── decoded/                #   디코딩된 URL
+    └── output/                 #   추출된 본문
 ```
 
 ## 설치
